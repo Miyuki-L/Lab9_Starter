@@ -100,11 +100,5 @@ traceButton.addEventListener("click", () => {
 
 let globalErrorButton = document.getElementById("consoleGlobalError");
 globalErrorButton.addEventListener("click", () => {
-   
-})
-
-/*
-
-   <button id="consoleTrace">Console Trace</button>
-   <button id="consoleGlobalError">Trigger a Global Error</button>
-*/
+   globalError()
+});

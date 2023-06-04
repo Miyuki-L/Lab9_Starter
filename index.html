@@ -46,6 +46,10 @@
       padding: 8px 2px;
       width: 122px;
     }
+
+    #tryCatch {
+      background-color: aqua;
+    }
   </style>
 </head>
 
@@ -84,6 +88,7 @@
       <button id="consoleEndTimer">End Timer</button>
       <button id="consoleTrace">Console Trace</button>
       <button id="consoleGlobalError">Trigger a Global Error</button>
+      <button id="tryCatch"> Trigger Try Catch Finally Statement</button>
     </section>
   </main>
 
@@ -102,6 +107,38 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    window.onerror = function (message, url, line, col, error) {
+      console.error(`Global Error: ${message} \n At ${line}:${col} of ${url}`);
+    }
+
+    class ElementNotFoundError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "ElementNotFoundError";
+      }
+    }
+
+    let tryCatchButton = document.getElementById("tryCatch");
+    tryCatchButton.addEventListener("click", () => {
+      let number = Math.floor(Math.random()*10);
+
+      try {
+        let result = document.getElementById("result");
+
+        if (!result) {
+          throw new ElementNotFoundError("Couldn't Find Element with id result");
+        }
+        result.innerHTML = number;
+
+      } catch(error) {
+        if (error instanceof ElementNotFoundError) {
+          console.error(error);
+        }
+      } finally {
+        console.log(`Number Generated: ${number}`);
+      }
+    })
+
   </script>
   <script type="text/javascript" src="console.js"></script>
 </body>
