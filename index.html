@@ -108,7 +108,7 @@
     // Start your code here
     // You may move this JS to another file if you wish
     window.onerror = function (message, url, line, col, error) {
-      console.error(`Global Error: ${message} \n At ${line}:${col} of ${url}`);
+      console.log("Catching Global Error");
     }
 
     class ElementNotFoundError extends Error {
@@ -139,6 +139,13 @@
       }
     })
 
+  </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "ea510c846e364983bd191764c635a2b8"
+      // for more configuration options, see https://docs.trackjs.com
+    });
   </script>
   <script type="text/javascript" src="console.js"></script>
 </body>
